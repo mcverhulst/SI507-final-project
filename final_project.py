@@ -23,4 +23,5 @@ for team in teams:
     team_id = team['id']
     teams_rosters.append(requests.get(f"{base_url}teams/{team_id}?expand=team.roster&season=20212022").json()['teams'][0])
 
+# writing team data with rosters to json for future reference
 utils.write_json('20212022_rosters.json' , teams_rosters)
