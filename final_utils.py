@@ -32,7 +32,7 @@ def read_csv(filepath, encoding='utf-8', newline='', delimiter=','):
     WARN: If a byte order mark (BOM) is encountered at the beginning of the first line of decoded
     text, call < read_csv > and pass 'utf-8-sig' as the < encoding > argument.
 
-    WARN: If newline='' is not specified, newlines '\n' or '\r\n' embedded inside quoted fields
+    WARN: If newline='' is not specified, newlines '\n' or '\r\n' embedded inside quoted fields
     may not be interpreted correctly by the csv.reader.
 
     Parameters:
