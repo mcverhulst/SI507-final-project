@@ -4,6 +4,7 @@
 
 import requests
 import pandas as pd
+from bs4 import BeautifulSoup
 import final_utils as utils
 
 base_url = 'https://statsapi.web.nhl.com/api/v1/'
