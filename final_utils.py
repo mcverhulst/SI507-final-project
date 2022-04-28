@@ -1,7 +1,8 @@
 import csv
 import json
 import requests
-
+from bs4 import BeautifulSoup
+import pandas as pd
 
 def get_nhl_data(url, params=None, timeout=10):
     """Returns a response object decoded into a dictionary. If query string < params > are
@@ -113,3 +114,39 @@ def write_json(filepath, data, encoding='utf-8', ensure_ascii=False, indent=2):
 
     with open(filepath, 'w', encoding=encoding) as file_obj:
         json.dump(data, file_obj, ensure_ascii=ensure_ascii, indent=indent)
+
+
+def getPlayer(name):
+    '''
+    Takes name from user and searches hokcey-reference.com for that player. If
+    player is found will return the players BeautifulSoup tag that contains the
+    url with that player's stats.
+
+    Paramaeters: (str) Name of a player
+
+    Returns: BeautifulSoup tag object of player that was searched for.
+    '''
+    name = name.lower().split()
+    lname = name[-1]
+    url = f'https://www.hockey-reference.com/players/{name[-1][0]}'
+
+    page = requests.get(url)
+    soup = BeautifulSoup(page.content, 'html.parser')
+
+    players = soup.find_all(class_='nhl')
+    tags = list(players)
+
+    searched = []
+
+    for i in range(len(tags)):
+        x = tags[i].contents[0]
+        x = str(x.contents[0]).lower()
+        if lname in x:
+            searched.append(tags[i])
+            # return tags[i]
+        else:
+            continue
+    if len(searched) < 1:
+        print("Sorry, I didn't find that player")
+    else:
+        return searched
