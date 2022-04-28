@@ -207,7 +207,13 @@ def getPlayer(name):
         return searched
 
 
-def player_stats(url):
+def player_stats(player):
+    '''
+    Input: (BeautifulSoup tag) player info
+    Returns: pandas dataframe with player's stats
+    '''
+    url = player.find('a').get('href')
+
     hockey_url = f"https://www.hockey-reference.com{url}"
 
     page = requests.get(hockey_url)
@@ -221,14 +227,18 @@ def player_stats(url):
 
 
 def playerToClass(player):
-    df = player_stats(player.find('a').get('href'))
+    df = player_stats(player)
+    '''
+    last value for each column is a total except for games (instead of total says
+    "career." Will use df.sum() instead to calculate sums if needed.
+    '''
     x = skater(
         name = player.find('a').contents,
-        seasons = df['Unnamed: 0_level_0']['Season'].values,
-        goals = df.Scoring.G.values,
-        assists = df.Scoring.A.values,
-        points = df.Scoring.PTS.values,
-        games = df['Unnamed: 4_level_0']['GP'],
+        seasons = df['Unnamed: 0_level_0']['Season'].values[:-1],
+        goals = df.Scoring.G.values[:-1],
+        assists = df.Scoring.A.values[:-1],
+        points = df.Scoring.PTS.values[:-1],
+        games = df['Unnamed: 4_level_0']['GP'][:-1],
     )
 
     return x
