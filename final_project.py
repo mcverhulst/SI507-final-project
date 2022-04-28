@@ -76,15 +76,14 @@ ovechkin = utils.playerToClass(ovi)
 # print(ovechkin.goals[0].sum())
 
 ### plotting Crosby vs Ovechkin
-haha = sid_stats.merge(ovi_stats, how='left', right_on='Season', left_on='Season')
-# def lolol(x):
-#     return int(x[:4])
-# haha['Season_int'] = haha['Season'].apply(lolol)
-print(haha.info())
-# print(sns.lineplot(haha, x=['G_x', 'G_y'], y='Season_int'))
-# plt.plot(data=haha, y='Season_int', x=['G_x', 'G_y'])
-plt.plot(haha['Season_int_x'], haha['G_x'])
-plt.plot(haha['Season_int_y'], haha['G_y'])
+# haha = sid_stats.merge(ovi_stats, how='left', right_on='Season', left_on='Season')
+# print(haha.info())
 
+# plt.plot(haha['Season_int_x'], haha['G_x'])
+# plt.plot(haha['Season_int_y'], haha['G_y'])
+# plt.show()
 
+plt.plot(sid_crosby.seasons[0], sid_crosby.goals[0])
+plt.plot(ovechkin.seasons[0], ovechkin.goals[0])
+plt.xticks(rotation=45)
 plt.show()
