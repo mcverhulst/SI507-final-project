@@ -77,11 +77,15 @@ ovechkin = utils.playerToClass(ovi)
 # plt.plot(haha['Season_int_y'], haha['G_y'])
 # plt.show()
 
-# plt.plot(sid_crosby.seasons[0], sid_crosby.goals[0])
-# plt.plot(ovechkin.seasons[0], ovechkin.goals[0])
-# plt.xticks(rotation=45)
-# plt.show()
-
 # utils.plotGoalAssists(sid_crosby, ovechkin)
-utils.plotAll(sid_crosby, ovechkin)
+# utils.plotAll(sid_crosby, ovechkin)
 # print(ovechkin.games)
+
+### testing players with different playing career timelines
+seider_results = utils.getPlayer('Moritz Seider')
+seider = seider_results[0]
+seider_stats = utils.player_stats(seider)
+# testing playerToClass
+seider = utils.playerToClass(seider)
+
+utils.plotAll(ovechkin, seider)
