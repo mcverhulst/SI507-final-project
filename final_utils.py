@@ -19,6 +19,46 @@ class TreeNode(dict):
         return node
 
 
+class skater():
+    def __init__(self, name, seasons, goals, assists, points, games):
+        self.name = name,
+        self.seasons = seasons,
+        self.goals = goals,
+        self.assists = assists,
+        self.points = points,
+        self.games = games
+
+    def points(self):
+        return self.points
+
+    def goals(self):
+        return self.goals
+
+    def assists(self):
+        return self.assists
+
+    def points(self):
+        return self.assists
+
+    def games(self):
+        return self.games
+
+    def position(self):
+        return self.position
+
+
+class goalie(skater):
+    def __init__(self, name, seasons, goals, assists, points, games, \
+            saves, gaa, svPct, wins, loss, shutOut):
+        super().__init__(name, seasons, goals, assists, points, games)
+        self.saves = saves,
+        self.gaa = gaa,
+        self.svPCT = svPct,
+        self.wins = wins,
+        self.loss = loss,
+        self.shutOut = shutOut,
+
+
 def get_nhl_data(url, params=None, timeout=10):
     """Returns a response object decoded into a dictionary. If query string < params > are
     provided the response object body is returned in the form on an "envelope" with the data
@@ -139,7 +179,7 @@ def getPlayer(name):
 
     Paramaeters: (str) Name of a player
 
-    Returns: BeautifulSoup tag object of player that was searched for.
+    Returns:List of BeautifulSoup tags that match the search termS.
     '''
     name = name.lower().split()
     lname = name[-1]
@@ -178,3 +218,19 @@ def player_stats(url):
     df = pd.read_html(str(table))[1]
 
     return df
+
+
+def playerToClass(player):
+    df = player_stats(player.find('a').get('href'))
+    x = skater(
+        name = player.find('a').contents,
+        seasons = df['Unnamed: 0_level_0']['Season'].values,
+        goals = df.Scoring.G.values,
+        assists = df.Scoring.A.values,
+        points = df.Scoring.PTS.values,
+        games = df['Unnamed: 4_level_0']['GP'],
+    )
+
+    return x
+
+
