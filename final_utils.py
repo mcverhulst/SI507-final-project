@@ -2,6 +2,7 @@ import csv
 import json
 import requests
 from bs4 import BeautifulSoup
+import matplotlib.pyplot as plt
 import pandas as pd
 
 class TreeNode(dict):
@@ -35,9 +36,6 @@ class skater():
         return self.goals
 
     def assists(self):
-        return self.assists
-
-    def points(self):
         return self.assists
 
     def games(self):
@@ -237,13 +235,88 @@ def playerToClass(player):
     df = player_stats(player)
     x = skater(
         name = player.find('a').contents,
-        seasons = df['Season'].values,
+        seasons = df['Season_int'].values,
         goals = df.G.values,
         assists = df.A.values,
         points = df.PTS.values,
-        games = df['GP'],
+        games = df.GP.values,
     )
 
     return x
 
 
+def plotGoals(p1, p2):
+    '''
+    Input: two instances of player class
+    what: goals, assits, points, games
+    '''
+
+    plt.plot(p1.seasons[0], p1.goals[0])
+    plt.plot(p2.seasons[0], p2.goals[0])
+    plt.xlabel('NHL Seasons')
+    plt.ylabel(f"Goals Scored")
+    plt.xticks(rotation=45)
+    plt.show()
+
+def plotAssists(p1, p2):
+    '''
+    Input: two instances of player class
+    what: goals, assits, points, games
+    '''
+
+    plt.plot(p1.seasons[0], p1.goals[0])
+    plt.plot(p2.seasons[0], p2.goals[0])
+    plt.xlabel('NHL Seasons')
+    plt.ylabel(f"Goals Scored")
+    plt.xticks(rotation=45)
+    plt.show()
+
+def plotAll(p1, p2):
+    # currently broken
+    f, ((ax1, ax2), (ax3, ax4)) = plt.subplots(2, 2, sharex='col', sharey='row')
+    ax1.plot(p1.seasons[0], p1.goals[0])
+    ax1.plot(p2.seasons[0], p2.goals[0])
+    ax1.set_title('Goals per season')
+
+    ax2.plot(p1.seasons[0], p1.assists[0])
+    ax2.plot(p2.seasons[0], p2.assists[0])
+    ax2.set_title('Assists per season')
+
+    ax3.plot(p1.seasons[0], p1.points[0])
+    ax3.plot(p2.seasons[0], p2.points[0])
+    ax3.set_title('Points per season')
+
+    ax4.plot(p1.seasons[0], p1.games, label=p1.name[0])
+    ax4.plot(p2.seasons[0], p2.games, label=p2.name[0])
+    ax4.set_title('Games played per season')
+
+    plt.subplots_adjust(left=0.1,
+                    bottom=0.1, 
+                    right=0.9, 
+                    top=0.9, 
+                    wspace=0.4, 
+                    hspace=0.4)
+    plt.legend()
+    plt.show()
+
+def plotGoalAssists(p1,p2):
+    f, axarr = plt.subplots(2, sharex=True) # figure, axes = plt.sub....
+    axarr[0].plot(p1.seasons[0], p1.goals[0]) # subplot 1
+    axarr[0].plot(p2.seasons[0], p2.goals[0]) # subplot 1
+
+    axarr[0].set_title('Sharing X axis')
+    axarr[1].plot(p1.seasons[0], p1.assists[0]) # subplot 2
+    axarr[1].plot(p2.seasons[0], p2.assists[0]) # subplot 2
+
+    plt.show()
+
+def plotPointsGames(p1,p2):
+    f, axarr = plt.subplots(2, sharex=True) # figure, axes = plt.sub....
+    axarr[0].plot(p1.seasons[0], p1.points[0]) # subplot 1
+    axarr[0].plot(p2.seasons[0], p2.points[0]) # subplot 1
+
+    axarr[0].set_title('Sharing X axis')
+    axarr[1].plot(p1.seasons[0], p1.games[0]) # subplot 2
+    axarr[1].plot(p2.seasons[0], p2.games[0]) # subplot 2
+
+    plt.show()
