@@ -224,8 +224,13 @@ def player_stats(player):
     df = pd.read_html(str(table))[1]
     df.columns = df.columns.get_level_values(1)
 
+    def seasonToInt(x):
+        return int(x[:4])
+    df = df[:-1] # removing summary stats
+    df['Season_int'] = df['Season'].apply(seasonToInt)
 
-    return df[:-1] # returning all but summary stats
+
+    return df
 
 
 def playerToClass(player):

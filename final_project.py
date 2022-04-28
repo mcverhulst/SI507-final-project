@@ -77,14 +77,14 @@ ovechkin = utils.playerToClass(ovi)
 
 ### plotting Crosby vs Ovechkin
 haha = sid_stats.merge(ovi_stats, how='left', right_on='Season', left_on='Season')
-def lolol(x):
-    return int(x[:4])
-haha['Season_int'] = haha['Season'].apply(lolol)
+# def lolol(x):
+#     return int(x[:4])
+# haha['Season_int'] = haha['Season'].apply(lolol)
 print(haha.info())
 # print(sns.lineplot(haha, x=['G_x', 'G_y'], y='Season_int'))
 # plt.plot(data=haha, y='Season_int', x=['G_x', 'G_y'])
-plt.plot(haha['Season_int'], haha['G_x'])
-plt.plot(haha['Season_int'], haha['G_y'])
+plt.plot(haha['Season_int_x'], haha['G_x'])
+plt.plot(haha['Season_int_y'], haha['G_y'])
 
 
 plt.show()
