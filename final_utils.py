@@ -4,6 +4,21 @@ import requests
 from bs4 import BeautifulSoup
 import pandas as pd
 
+class TreeNode(dict):
+    def __init__(self, name, children=None):
+        super().__init__()
+        self.__dict__ = self
+        self.name = name
+        self.children = list(children) if children is not None else []
+
+    def from_dict(dict_):
+        """ Recursively (re)construct TreeNode-based tree from dictionary. """
+        node = TreeNode(dict_['name'], dict_['children'])
+#        node.children = [TreeNode.from_dict(child) for child in node.children]
+        node.children = list(map(TreeNode.from_dict, node.children))
+        return node
+
+
 def get_nhl_data(url, params=None, timeout=10):
     """Returns a response object decoded into a dictionary. If query string < params > are
     provided the response object body is returned in the form on an "envelope" with the data
