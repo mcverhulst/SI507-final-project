@@ -6,6 +6,8 @@ import requests
 import pandas as pd
 from bs4 import BeautifulSoup
 import json
+import seaborn as sns
+import matplotlib.pyplot as plt
 import final_utils as utils
 
 base_url = 'https://statsapi.web.nhl.com/api/v1/'
@@ -57,18 +59,32 @@ json_str = json.dumps(tree, indent=2)
 sid_results = utils.getPlayer('Sidney Crosby')
 sid = sid_results[0]
 sid_stats = utils.player_stats(sid)
-print(sid_stats.head(5))
+# print(sid_stats.head(5))
 # testing playerToClass
 # print(sid.find('a').get('href'))
 sid_crosby = utils.playerToClass(sid)
-print(sid_crosby.goals[0].sum())
+# print(sid_crosby.goals[0].sum())
 
 ### getting a Alexander Ovechkin's info
 ovi_results = utils.getPlayer('Alexander Ovechkin')
 ovi = ovi_results[0]
 ovi_stats = utils.player_stats(ovi)
-print(ovi_stats.head(5))
+# print(ovi_stats.head(5))
 # testing playerToClass
 # print(sid.find('a').get('href'))
 ovechkin = utils.playerToClass(ovi)
-print(ovechkin.goals[0].sum())
+# print(ovechkin.goals[0].sum())
+
+### plotting Crosby vs Ovechkin
+haha = sid_stats.merge(ovi_stats, how='left', right_on='Season', left_on='Season')
+def lolol(x):
+    return int(x[:4])
+haha['Season_int'] = haha['Season'].apply(lolol)
+print(haha.info())
+# print(sns.lineplot(haha, x=['G_x', 'G_y'], y='Season_int'))
+# plt.plot(data=haha, y='Season_int', x=['G_x', 'G_y'])
+plt.plot(haha['Season_int'], haha['G_x'])
+plt.plot(haha['Season_int'], haha['G_y'])
+
+
+plt.show()

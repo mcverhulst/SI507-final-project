@@ -222,23 +222,21 @@ def player_stats(player):
 
     table = soup.find_all('table')
     df = pd.read_html(str(table))[1]
+    df.columns = df.columns.get_level_values(1)
 
-    return df
+
+    return df[:-1] # returning all but summary stats
 
 
 def playerToClass(player):
     df = player_stats(player)
-    '''
-    last value for each column is a total except for games (instead of total says
-    "career." Will use df.sum() instead to calculate sums if needed.
-    '''
     x = skater(
         name = player.find('a').contents,
-        seasons = df['Unnamed: 0_level_0']['Season'].values[:-1],
-        goals = df.Scoring.G.values[:-1],
-        assists = df.Scoring.A.values[:-1],
-        points = df.Scoring.PTS.values[:-1],
-        games = df['Unnamed: 4_level_0']['GP'][:-1],
+        seasons = df['Season'].values,
+        goals = df.G.values,
+        assists = df.A.values,
+        points = df.PTS.values,
+        games = df['GP'],
     )
 
     return x
