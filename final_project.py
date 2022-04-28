@@ -58,10 +58,17 @@ sid_results = utils.getPlayer('Sidney Crosby')
 sid = sid_results[0]
 sid_stats = utils.player_stats(sid)
 print(sid_stats.head(5))
-
-
-### testing playerToClass
+# testing playerToClass
 # print(sid.find('a').get('href'))
 sid_crosby = utils.playerToClass(sid)
-
 print(sid_crosby.goals[0].sum())
+
+### getting a Alexander Ovechkin's info
+ovi_results = utils.getPlayer('Alexander Ovechkin')
+ovi = ovi_results[0]
+ovi_stats = utils.player_stats(ovi)
+print(ovi_stats.head(5))
+# testing playerToClass
+# print(sid.find('a').get('href'))
+ovechkin = utils.playerToClass(ovi)
+print(ovechkin.goals[0].sum())
