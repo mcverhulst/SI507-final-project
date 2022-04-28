@@ -165,3 +165,16 @@ def getPlayer(name):
         print("Sorry, I didn't find that player")
     else:
         return searched
+
+
+def player_stats(url):
+    hockey_url = f"https://www.hockey-reference.com{url}"
+
+    page = requests.get(hockey_url)
+
+    soup = BeautifulSoup(page.content, 'html.parser')
+
+    table = soup.find_all('table')
+    df = pd.read_html(str(table))[1]
+
+    return df
