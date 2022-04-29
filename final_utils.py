@@ -301,6 +301,7 @@ def plotAll(p1, p2):
     plt.legend()
     plt.show()
 
+
 def plotGoalAssists(p1,p2):
     f, axarr = plt.subplots(2, sharex=True) # figure, axes = plt.sub....
     axarr[0].plot(p1.seasons[0], p1.goals[0]) # subplot 1
@@ -311,6 +312,7 @@ def plotGoalAssists(p1,p2):
     axarr[1].plot(p2.seasons[0], p2.assists[0]) # subplot 2
 
     plt.show()
+
 
 def plotPointsGames(p1,p2):
     f, axarr = plt.subplots(2, sharex=True) # figure, axes = plt.sub....
