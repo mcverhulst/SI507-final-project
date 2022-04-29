@@ -33,11 +33,6 @@ teams = requests.get('https://statsapi.web.nhl.com/api/v1/teams').json()['teams'
 teams = pd.read_json('20212022_rosters.json')
 # print(teams.iloc[1]['roster']['roster'][4])
 # print(teams.iloc[1]['roster']['roster'][4]['position']['code'])
-# print(type(teams))
-# teams.to_csv('derpington.csv')
-
-# test_skater = utils.skater(teams.iloc[1]['roster']['roster'][0])
-# test_goalie = utils.goalie(teams.iloc[1]['roster']['roster'][4])
 
 
 ### Building the tree
@@ -54,15 +49,16 @@ json_str = json.dumps(tree, indent=2)
 ### writing the tree to json
 # utils.write_json('final_tree.json', json_str)
 
+### testing getting player info
 
-### getting a Sidney Crosby's info
+##getting a Sidney Crosby's info
 # sid_results = utils.getPlayer('Sidney Crosby')
 # sid = sid_results[0]
 # sid_stats = utils.player_stats(sid)
 # # testing playerToClass
 # sid_crosby = utils.playerToClass(sid)
 
-### getting a Alexander Ovechkin's info
+## getting a Alexander Ovechkin's info
 # ovi_results = utils.getPlayer('Alexander Ovechkin')
 # ovi = ovi_results[0]
 # ovi_stats = utils.player_stats(ovi)
@@ -70,16 +66,8 @@ json_str = json.dumps(tree, indent=2)
 # ovechkin = utils.playerToClass(ovi)
 
 ### plotting Crosby vs Ovechkin
-# haha = sid_stats.merge(ovi_stats, how='left', right_on='Season', left_on='Season')
-# print(haha.info())
-
-# plt.plot(haha['Season_int_x'], haha['G_x'])
-# plt.plot(haha['Season_int_y'], haha['G_y'])
-# plt.show()
-
 # utils.plotGoalAssists(sid_crosby, ovechkin)
 # utils.plotAll(sid_crosby, ovechkin)
-# print(ovechkin.games)
 
 ### testing players with different playing career timelines
 # seider_results = utils.getPlayer('Moritz Seider')
