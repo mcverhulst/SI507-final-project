@@ -40,14 +40,13 @@ tree = utils.TreeNode('Would you like to compare players or teams?')
 tree.children.append(utils.TreeNode("Would you like to look at 1 team's stats or compare 2 teams?"))
 child2 = utils.TreeNode("Would you like to look at 1 player or compare 2 players?")
 tree.children.append(child2)
-tree.children[0].children.append(utils.TreeNode('Do stuff'))
-child2.children.append(utils.TreeNode('Do other stuff'))
-child2.children[0].children.append(utils.TreeNode('Great Grand Kid'))
+tree.children[0].children.append(utils.TreeNode('Plot goals/games played'))
+child2.children.append(utils.TreeNode('Plot all'))
 
 json_str = json.dumps(tree, indent=2)
 
 ### writing the tree to json
-# utils.write_json('final_tree.json', json_str)
+utils.write_json('final_tree.json', tree)
 
 ### testing getting player info
 
