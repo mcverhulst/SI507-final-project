@@ -56,18 +56,18 @@ json_str = json.dumps(tree, indent=2)
 
 
 ### getting a Sidney Crosby's info
-sid_results = utils.getPlayer('Sidney Crosby')
-sid = sid_results[0]
-sid_stats = utils.player_stats(sid)
-# testing playerToClass
-sid_crosby = utils.playerToClass(sid)
+# sid_results = utils.getPlayer('Sidney Crosby')
+# sid = sid_results[0]
+# sid_stats = utils.player_stats(sid)
+# # testing playerToClass
+# sid_crosby = utils.playerToClass(sid)
 
 ### getting a Alexander Ovechkin's info
-ovi_results = utils.getPlayer('Alexander Ovechkin')
-ovi = ovi_results[0]
-ovi_stats = utils.player_stats(ovi)
-# testing playerToClass
-ovechkin = utils.playerToClass(ovi)
+# ovi_results = utils.getPlayer('Alexander Ovechkin')
+# ovi = ovi_results[0]
+# ovi_stats = utils.player_stats(ovi)
+# # testing playerToClass
+# ovechkin = utils.playerToClass(ovi)
 
 ### plotting Crosby vs Ovechkin
 # haha = sid_stats.merge(ovi_stats, how='left', right_on='Season', left_on='Season')
@@ -82,11 +82,11 @@ ovechkin = utils.playerToClass(ovi)
 # print(ovechkin.games)
 
 ### testing players with different playing career timelines
-seider_results = utils.getPlayer('Moritz Seider')
-seider = seider_results[0]
-seider_stats = utils.player_stats(seider)
-# testing playerToClass
-seider = utils.playerToClass(seider)
+# seider_results = utils.getPlayer('Moritz Seider')
+# seider = seider_results[0]
+# seider_stats = utils.player_stats(seider)
+# # testing playerToClass
+# seider = utils.playerToClass(seider)
 
 # utils.plotAll(ovechkin, seider)
 
