@@ -324,3 +324,18 @@ def plotPointsGames(p1,p2):
     axarr[1].plot(p2.seasons[0], p2.games[0]) # subplot 2
 
     plt.show()
+
+def compare():
+    players = input('Please enter the names of two players you would like to compare seperated by a comma \n(Sidney Crosby, Alexander Ovechkin): ')
+    p1, p2 = players.split(',')
+
+    p1_results = getPlayer(p1)
+    p2_results = getPlayer(p2)
+
+    p1_tag = p1_results[0]
+    p2_tag = p2_results[0]
+
+    p1_skater = playerToClass(p1_results[0])
+    p2_skater = playerToClass(p2_results[0])
+
+    plotAll(p1_skater,p2_skater)
