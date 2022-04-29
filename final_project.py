@@ -46,7 +46,7 @@ child2.children.append(utils.TreeNode('Plot all'))
 json_str = json.dumps(tree, indent=2)
 
 ### writing the tree to json
-utils.write_json('final_tree.json', tree)
+# utils.write_json('final_tree.json', tree)
 
 ### testing getting player info
 
