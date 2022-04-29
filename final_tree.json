@@ -1,0 +1,23 @@
+{
+  "name": "Would you like to compare players or teams?",
+  "children": [
+    {
+      "name": "Would you like to look at 1 team's stats or compare 2 teams?",
+      "children": [
+        {
+          "name": "Plot goals/games played",
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "Would you like to look at 1 player or compare 2 players?",
+      "children": [
+        {
+          "name": "Plot all",
+          "children": []
+        }
+      ]
+    }
+  ]
+}
