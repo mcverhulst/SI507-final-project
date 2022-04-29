@@ -258,6 +258,7 @@ def plotGoals(p1, p2):
     plt.xticks(rotation=45)
     plt.show()
 
+
 def plotAssists(p1, p2):
     '''
     Input: two instances of player class
@@ -271,23 +272,24 @@ def plotAssists(p1, p2):
     plt.xticks(rotation=45)
     plt.show()
 
+
 def plotAll(p1, p2):
     # currently broken
     f, ((ax1, ax2), (ax3, ax4)) = plt.subplots(2, 2, sharex='col', sharey='row')
-    ax1.scatter(p1.seasons[0], p1.goals[0])
-    ax1.scatter(p2.seasons[0], p2.goals[0])
+    ax1.scatter(p1.seasons[0], p1.goals[0], marker='1')
+    ax1.scatter(p2.seasons[0], p2.goals[0], marker='1')
     ax1.set_title('Goals per season')
 
-    ax2.scatter(p1.seasons[0], p1.assists[0])
-    ax2.scatter(p2.seasons[0], p2.assists[0])
+    ax2.scatter(p1.seasons[0], p1.assists[0], marker='1')
+    ax2.scatter(p2.seasons[0], p2.assists[0], marker='1')
     ax2.set_title('Assists per season')
 
-    ax3.scatter(p1.seasons[0], p1.points[0])
-    ax3.scatter(p2.seasons[0], p2.points[0])
+    ax3.scatter(p1.seasons[0], p1.points[0], marker='1')
+    ax3.scatter(p2.seasons[0], p2.points[0], marker='1')
     ax3.set_title('Points per season')
 
-    ax4.scatter(p1.seasons[0], p1.games, label=p1.name[0])
-    ax4.scatter(p2.seasons[0], p2.games, label=p2.name[0])
+    ax4.scatter(p1.seasons[0], p1.games, label=p1.name[0], marker='1')
+    ax4.scatter(p2.seasons[0], p2.games, label=p2.name[0], marker='1')
     ax4.set_title('Games played per season')
 
     plt.subplots_adjust(left=0.1,
