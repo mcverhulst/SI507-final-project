@@ -88,4 +88,18 @@ seider_stats = utils.player_stats(seider)
 # testing playerToClass
 seider = utils.playerToClass(seider)
 
-utils.plotAll(ovechkin, seider)
+# utils.plotAll(ovechkin, seider)
+
+players = input('Please enter the names of two players you would like to compare seperated by a comma \n(Sidney Crosby, Alexander Ovechkin): ')
+p1, p2 = players.split(',')
+
+p1_results = utils.getPlayer(p1)
+p2_results = utils.getPlayer(p2)
+
+p1_tag = p1_results[0]
+p2_tag = p2_results[0]
+
+p1_skater = utils.playerToClass(p1_results[0])
+p2_skater = utils.playerToClass(p2_results[0])
+
+utils.plotAll(p1_skater,p2_skater)
