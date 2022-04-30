@@ -4,5 +4,5 @@ This project allows for the user to enter two names of National Hockey League (N
 
 Instructions: When prompted, enter the names of two players separated by a comma. Some examples:
 * Alexander Ovechkin, Sidney Crosby
-* Evgeni Malkin, Auten Matthews
+* Evgeni Malkin, Austen Matthews
 * Dylan Larkin, Andrew Doughty
